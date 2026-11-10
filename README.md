@@ -127,3 +127,9 @@ and send it in the `X-API-Key` header.
 - Every value carries the time it became known (`knowledge_time`), and revisions are kept as
   versions. `as_of` returns the data as it was known at any past instant.
 - Each response names the publisher's licence and the credit line to show.
+
+## Licence
+
+The code and examples in this repository are under the [MIT licence](LICENSE). The data the API
+returns stays under each publisher's own terms, named in the `licence` field of every response
+and on the [Sources](https://grid.rebase.energy/docs/v1/guides/sources/) page.
