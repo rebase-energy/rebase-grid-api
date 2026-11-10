@@ -9,7 +9,7 @@ description = "Python client for the Rebase Grid API: European electricity price
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Rebase Energy" }]
 keywords = ["electricity", "energy", "power system", "day-ahead prices", "entsoe", "electricity market", "open data", "api"]
 classifiers = [
