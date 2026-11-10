@@ -52,7 +52,7 @@ curl "https://grid.rebase.energy/api/v1/entities/DE-LU/timeseries/price.day_ahea
 ## Python
 
 ```bash
-pip install git+https://github.com/rebase-energy/rebase-grid-api
+pip install rebase-grid-api
 ```
 
 ```python
