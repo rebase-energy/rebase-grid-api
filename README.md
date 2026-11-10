@@ -51,29 +51,43 @@ curl "https://grid.rebase.energy/api/v1/entities/DE-LU/timeseries/price.day_ahea
 
 ## Python
 
-No client library is needed, only `requests`:
+```bash
+pip install git+https://github.com/rebase-energy/rebase-grid-api
+```
 
 ```python
-import pandas as pd
+from rebase_grid_api import GridAPI
+
+grid = GridAPI()   # no key needed; GridAPI(api_key="...") for 240 requests per minute
+
+# one timeseries as a pandas Series, indexed by UTC time
+prices = grid.values("DE-LU", "price.day_ahead.day_ahead_auction_price",
+                     start="2026-11-01", end="2026-11-08")
+
+# several years in one call: the client splits the range into requests for you
+load = grid.values("DE-LU", "consumption.realised_load.total_load",
+                   start="2023-01-01", end="2026-07-01")
+
+grid.search("SE-SE3", category="price", q="day-ahead")   # find timeseries names
+grid.timeseries("DE-LU")                                 # everything on one entity
+grid.entities()                                          # countries, zones, borders
+grid.frequency()                                         # live grid frequency
+```
+
+The client waits and retries when the rate limit is reached, and picks the provider for you when
+only one organisation publishes a series. It is one file,
+[`src/rebase_grid_api/client.py`](src/rebase_grid_api/client.py).
+
+The API is plain HTTP, so `requests` alone works too:
+
+```python
 import requests
 
-API = "https://grid.rebase.energy/api/v1"
-
-
-def read(entity: str, name: str, start: str, end: str, provider: str = "entsoe") -> pd.Series:
-    """One timeseries on one entity, as a pandas Series indexed by UTC time."""
-    r = requests.get(
-        f"{API}/entities/{entity}/timeseries/{name}/values",
-        params={"provider": provider, "start": start, "end": end},
-    )
-    r.raise_for_status()
-    points = r.json()["points"]
-    index = pd.to_datetime([p["valid_time"] for p in points])
-    return pd.Series([p["value"] for p in points], index=index, name=name)
-
-
-prices = read("DE-LU", "price.day_ahead.day_ahead_auction_price",
-              "2026-11-01T00:00:00Z", "2026-11-08T00:00:00Z")
+r = requests.get(
+    "https://grid.rebase.energy/api/v1/entities/DE-LU/timeseries/price.day_ahead.day_ahead_auction_price/values",
+    params={"provider": "entsoe", "start": "2026-11-01T00:00:00Z", "end": "2026-11-08T00:00:00Z"},
+)
+points = r.json()["points"]   # [{"valid_time": ..., "value": ..., "knowledge_time": ...}, ...]
 ```
 
 ## What to ask for

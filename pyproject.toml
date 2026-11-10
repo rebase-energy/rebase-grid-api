@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rebase-grid-api"
+version = "0.1.0"
+description = "Python client for the Rebase Grid API: European electricity prices, load, generation, forecasts and flows. No API key needed."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Rebase Energy" }]
+keywords = ["electricity", "energy", "power system", "day-ahead prices", "entsoe", "electricity market", "open data", "api"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = ["requests>=2.28", "pandas>=1.5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://rebase.energy/grid-API"
+Documentation = "https://grid.rebase.energy/docs/v1"
+Repository = "https://github.com/rebase-energy/rebase-grid-api"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rebase_grid_api"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: calls the real API (run with -m live)"]
+addopts = "-m 'not live'"
