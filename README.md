@@ -12,6 +12,22 @@ raises the limit to 240 per minute.
 - For AI agents: https://grid.rebase.energy/llms.txt
 - About: https://rebase.energy/grid-API
 
+## In numbers
+
+Counted from the live API on 10 November 2026 (`GET /version`, `GET /entities`):
+
+| | |
+|---|---|
+| Timeseries | 77,146 |
+| Countries with data | 36 |
+| Price zones (bidding zones) with data | 51 |
+| Publishers | 36: ENTSO-E Transparency Platform, Elexon BMRS, NESO, RTE, Fingrid, Energinet, Svenska kraftnät, Statnett, Elia, Terna, SMARD, eSett and others ([full list with licences](https://grid.rebase.energy/docs/v1/guides/sources/)) |
+| Power plants and generating units | 57,622 plants, 99,207 units |
+| Resolution | as published: 15 minutes for most market series |
+| History | day-ahead prices for Germany-Luxembourg since the zone began in October 2018; older zones go back to 2015 |
+| Revisions kept | every republished value since 3 September 2026 |
+| Price | free, with or without a key |
+
 ## Try it
 
 Day-ahead prices for Germany-Luxembourg, one day. This works as it is:
