@@ -1,6 +1,6 @@
 """A small client for the Rebase Grid API (https://grid.rebase.energy/docs/v1).
 
-No API key is needed: without one the API answers 10 requests per minute. A free key raises the
+No API key is needed: without one the API answers 30 requests per minute. A free key raises the
 limit to 240 per minute.
 """
 from __future__ import annotations

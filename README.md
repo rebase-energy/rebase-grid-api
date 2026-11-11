@@ -4,7 +4,7 @@ Open REST API for European power system and electricity market data: day-ahead p
 generation by type, wind and solar forecasts, cross-border flows, balancing and grid frequency.
 The data comes from ENTSO-E, TSOs and exchanges, in one schema.
 
-**No API key needed.** Every endpoint answers without a key at 10 requests per minute. A free key
+**No API key needed.** Every endpoint answers without a key at 30 requests per minute. A free key
 raises the limit to 240 per minute.
 
 - Base URL: `https://grid.rebase.energy/api/v1`
@@ -126,7 +126,7 @@ curl "https://grid.rebase.energy/api/v1/timeseries?entity=SE-SE3&category=price&
 
 | | Without a key | With a free key |
 |---|---|---|
-| Requests | 10 per minute per IP address | 240 per minute |
+| Requests | 30 per minute per IP address | 240 per minute |
 | Data | all | all |
 | Points per request | 100,000 | 100,000 |
 
